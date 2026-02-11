@@ -1,4 +1,8 @@
 // src-tauri/src/lib.rs
+mod economics;
+mod github;
+mod analytics;
+mod db;
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 

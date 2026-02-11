@@ -58,6 +58,17 @@ async function loadGitHub(username) {
   });
 }
 
+Add function:
+
+function exportPNG() {
+  html2canvas(document.body).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "ai-productivity-score.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+}
+
 loadProfileData().then(buildCharts);
 
 

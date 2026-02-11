@@ -4,8 +4,6 @@ mod github;
 mod analytics;
 mod db;
 
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
 use tauri::{AppHandle, Manager};
 use tauri_plugin_dialog::DialogExt;
 
@@ -23,42 +21,26 @@ struct AppState {
 }
 
 #[tauri::command]
-async fn save_credentials(
-    app: AppHandle,
+fn save_credentials(
+    app: tauri::AppHandle,
     username: String,
     token: String,
 ) -> Result<(), String> {
-    // Store in state
-    let state = app.state::<AppState>();
-    {
-        let mut creds = state
-            .credentials
-            .lock()
-            .map_err(|_| "Failed to lock credentials state".to_string())?;
-        *creds = Some(Credentials { username, token });
-    }
+    db::save_credentials(&app, &username, &token)
+}
 
     // Optional: show a confirmation dialog
     if let Some(window) = app.get_webview_window("main") {
         window
-            .dialog()
-            .message("GitHub credentials saved successfully.")
-            .title("Success")
-            .show()
-            .map_err(|e| e.to_string())?;
+          println!("GitHub credentials saved successfully.");
     }
-
     Ok(())
 }
 
 #[tauri::command]
-async fn get_credentials(app: AppHandle) -> Result<Option<Credentials>, String> {
-    let state = app.state::<AppState>();
-    let creds = state
-        .credentials
-        .lock()
-        .map_err(|_| "Failed to lock credentials state".to_string())?;
-    Ok(creds.clone())
+fn get_credentials(app: tauri::AppHandle) -> Result<Credentials, String> {
+    db::get_credentials(&app)
+        Err("No credentials found".to_string())
 }
 
 pub fn run() {

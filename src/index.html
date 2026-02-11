@@ -90,7 +90,7 @@
     </div>
 
     <script type="module">
-      import { invoke } from "https://unpkg.com/@tauri-apps/api@2.0.0-beta.0/core.js";
+      import { invoke } from "@tauri-apps/api/core";
 
       const usernameInput = document.getElementById("username");
       const tokenInput = document.getElementById("token");
@@ -129,6 +129,19 @@
       });
 
       loadExisting();
+
+      // TEST BACKEND CONNECTION
+      async function testCommits() {
+        try {
+          const result = await invoke("get_14_day_commits");
+          console.log("14-day commits:", result);
+          } catch (err) {
+          console.error("Failed to fetch commits:", err);
+          }
+        }
+
+        testCommits();
+
     </script>
   </body>
 </html>

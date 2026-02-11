@@ -69,6 +69,19 @@ function exportPNG() {
   });
 }
 
+function exportPNG() {
+  html2canvas(document.body).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "ai-productivity-score.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+document.getElementById("exportBtn")
+  .addEventListener("click", exportPNG);
+
+
 loadProfileData().then(buildCharts);
 
 

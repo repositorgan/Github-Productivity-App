@@ -69,7 +69,9 @@ fn main() {
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             save_credentials,
-            get_credentials
+            get_credentials,
+            github::get_14_day_commits,
+            economics::calculate_economics
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

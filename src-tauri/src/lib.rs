@@ -35,7 +35,6 @@ fn save_credentials(
           println!("GitHub credentials saved successfully.");
     }
     Ok(())
-}
 
 #[tauri::command]
 fn get_credentials(app: tauri::AppHandle) -> Result<Credentials, String> {

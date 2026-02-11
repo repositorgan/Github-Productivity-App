@@ -36,5 +36,29 @@ async function calculateEconomics() {
   });
 }
 
+async function loadGitHub(username) {
+
+  const data = await invoke("get_14_day_commits", { username });
+
+  const labels = data.map(d => d.date);
+  const commits = data.map(d => d.commits);
+
+  new Chart(document.getElementById("productivityChart"), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Commits (Last 14 Days)",
+          data: commits,
+          borderWidth: 2
+        }
+      ]
+    }
+  });
+}
+
 loadProfileData().then(buildCharts);
+
+
 

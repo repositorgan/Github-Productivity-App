@@ -1,8 +1,0 @@
-{
-  "identifier": "process",
-  "windows": ["main"],
-  "permissions": [
-    "process:default",
-    "process:allow-command"
-  ]
-}

@@ -8,12 +8,25 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
   <h1>GitHub Productivity Tracker</h1>
   <p>Real GitHub activity across all repositories.</p>
 
   <canvas id="profileChart" width="900" height="400"></canvas>
 
+  <div>
+    <input id="sessions" placeholder="AI Sessions" />
+    <input id="cost" placeholder="Total AI Cost" />
+    <input id="commits" placeholder="Commits (14 days)" />
+    <input id="hourlyRate" placeholder="Hourly Rate (default 75)" value="75" />
+    <button onclick="calculateEconomics()">Calculate</button>
+  </div>
+
+  <div>
+    <h3>Value Produced: <span id="valueProduced"></span></h3>
+    <h3>ROI: <span id="roi"></span></h3>
+    <h3>Productivity Multiplier: <span id="multiplier"></span></h3>
+  </div>
+  
   <h2>Manual vs Copilot vs GPT</h2>
   <canvas id="gptChart" width="900" height="400"></canvas>
 

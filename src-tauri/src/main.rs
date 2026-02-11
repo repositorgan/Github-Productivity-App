@@ -6,6 +6,7 @@ fn main() {
 }
 
 mod economics;
+mod github;
 
 #[tauri::command]
 fn run_economic_model(
@@ -23,5 +24,7 @@ fn run_economic_model(
 }
 
 .invoke_handler(tauri::generate_handler![
-    run_economic_model
+    github::get_14_day_commits,
+    run_economic_model,
+    log_session
 ])

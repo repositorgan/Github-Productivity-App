@@ -1,0 +1,12 @@
+{
+  "identifier": "dialog",
+  "windows": ["main"],
+  "permissions": [
+    "dialog:default",
+    "dialog:allow-message",
+    "dialog:allow-ask",
+    "dialog:allow-confirm",
+    "dialog:allow-open",
+    "dialog:allow-save"
+  ]
+}

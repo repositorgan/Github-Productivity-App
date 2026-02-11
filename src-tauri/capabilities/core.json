@@ -1,0 +1,7 @@
+{
+  "identifier": "core",
+  "windows": ["main"],
+  "permissions": [
+    "core:default"
+  ]
+}

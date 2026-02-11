@@ -2,7 +2,7 @@
   "identifier": "fs",
   "windows": ["main"],
   "permissions": [
-    "fs:default",
+    "core:default",
     "fs:allow-read-file",
     "fs:allow-write-file",
     "fs:allow-read-dir",

@@ -5,9 +5,10 @@
   "identifier": "com.github.productivity.app",
 
   "build": {
-    "beforeDevCommand": "",
-    "beforeBuildCommand": "",
-    "frontendDist": "../src"
+    "frontendDist": "../src",
+    "devUrl": "../src"
+  }
+
   },
 
   "app": {

@@ -70,7 +70,9 @@ function exportPNG() {
 }
 
 function exportPNG() {
-  html2canvas(document.body).then(canvas => {
+  const element = document.getElementById("shareCard");
+
+  html2canvas(element).then(canvas => {
     const link = document.createElement("a");
     link.download = "ai-productivity-score.png";
     link.href = canvas.toDataURL("image/png");

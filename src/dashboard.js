@@ -1,33 +1,27 @@
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 
-async function loadProfileData() {
-  const json = await invoke("get_profile_data");
-  return JSON.parse(json);
-}
+async function calculateEconomics() {
+  const sessions = parseInt(document.getElementById("sessions").value);
+  const cost = parseFloat(document.getElementById("cost").value);
+  const commits = parseInt(document.getElementById("commits").value);
+  const hourlyRate = parseFloat(document.getElementById("hourlyRate").value);
 
-function buildCharts(data) {
-  const labels = data.map(d => d.week_start);
-
-  const commits = data.map(d => d.commits);
-  const linesAdded = data.map(d => d.lines_added);
-  const linesDeleted = data.map(d => d.lines_deleted);
-
-  new Chart(document.getElementById("profileChart"), {
-    type: "line",
-    data: {
-      labels,
-      datasets: [
-        { label: "Commits", data: commits, borderColor: "blue" },
-        { label: "Lines Added", data: linesAdded, borderColor: "green" },
-        { label: "Lines Deleted", data: linesDeleted, borderColor: "red" }
-      ]
-    }
+  const report = await invoke("run_economic_model", {
+    sessions,
+    totalCost: cost,
+    commits,
+    hourlyRate
   });
 
-  // Manual vs Copilot vs GPT (derived)
-  const manual = linesAdded.map(v => Math.round(v * 0.3));
-  const copilot = linesAdded.map(v => Math.round(v * 0.5));
-  const gpt = linesAdded.map(v => Math.round(v * 0.8));
+  document.getElementById("valueProduced").innerText =
+    "$" + report.value_produced.toFixed(2);
+
+  document.getElementById("roi").innerText =
+    report.roi.toFixed(2) + "x";
+
+  document.getElementById("multiplier").innerText =
+    report.productivity_multiplier.toFixed(2) + "x";
+}
 
   new Chart(document.getElementById("gptChart"), {
     type: "line",

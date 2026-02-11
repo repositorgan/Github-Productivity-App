@@ -1,5 +1,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    github_productivity_app_lib::run();
+    github_productivity_app::run();
 }

@@ -12,6 +12,10 @@ path = "src/lib.rs"
 [build-dependencies]
 tauri-build = { version = "2" }
 
+[[bin]]
+name = "github-productivity-app"
+path = "src/main.rs"
+
 [dependencies]
 tauri = { version = "2" }
 tauri-plugin-dialog = "2"

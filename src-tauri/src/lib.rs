@@ -61,18 +61,14 @@ async fn get_credentials(app: AppHandle) -> Result<Option<Credentials>, String> 
     Ok(creds.clone())
 }
 
-fn main() {
+pub fn run() {
     tauri::Builder::default()
-        .manage(AppState {
-            credentials: std::sync::Mutex::new(None),
-        })
-        .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
             save_credentials,
             get_credentials,
-            github::get_14_day_commits,
-            economics::calculate_economics
+            github::get_14_day_commits
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+

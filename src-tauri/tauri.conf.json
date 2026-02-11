@@ -6,13 +6,14 @@
   "build": {
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "frontendDist": "../src",
-    "devUrl": null
+    "devPath": "src",
+    "distDir": "src"
   },
 
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "GitHub Productivity Tracker",
         "width": 1200,
         "height": 800

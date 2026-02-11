@@ -29,13 +29,6 @@ fn save_credentials(
     db::save_credentials(&app, &username, &token)
 }
 
-    // Optional: show a confirmation dialog
-    if let Some(window) = app.get_webview_window("main") {
-        window
-          println!("GitHub credentials saved successfully.");
-    }
-    Ok(())
-
 #[tauri::command]
 fn get_credentials(app: tauri::AppHandle) -> Result<Credentials, String> {
     db::get_credentials(&app)
